@@ -31,8 +31,6 @@ public class exampleTest extends BaseTest {
     private By threePointsOptionsBtn = By.xpath("//a[@data-testid='post_chevron_button']");
     private By deletePostLink = By.xpath("//a[@data-feed-option-name='FeedDeleteOption']");
     private By deleteBtn = By.xpath("//button[text()='Delete']");
-    private By presentTextHW = By.xpath("//p[text()='Hello world']");
-
 
     @BeforeTest
     public void beforeTest() {
@@ -49,37 +47,38 @@ public class exampleTest extends BaseTest {
     @Test
     public void exampleTest() throws InterruptedException {
         driver.get("https://www.facebook.com");
-        
+
         driver.findElement(emailFl).sendKeys("eshapovalov298@gmail.com");
         driver.findElement(passFl).sendKeys("Tester1234");
         driver.findElement(loginBtn).click();
         driver.findElement(myNameLink).click();
 
+        Thread.sleep(2000);
         WebElement photoElement = driver.findElement(profilePhotoImg);
         Assert.assertTrue(photoElement.isDisplayed(), "The Profile page is not opened");
 
         driver.findElement(homeBtn).click();
 
+        Thread.sleep(2000);
         WebElement element2 = driver.findElement(userNavBtn);
         Assert.assertTrue(element2.isDisplayed(), "The Home page is not opened");
 
         driver.findElement(postBox).click();
 
-        wait(driver, sendPresentationBtn);
-
+        Thread.sleep(2000);
         WebElement element = driver.findElement(presentation);
         Actions act = new Actions(driver);
-        act.moveToElement(element).click().sendKeys("Hello world").build().perform();
+        act.moveToElement(element).click().sendKeys("Hello world " + Math.random()).build().perform();
 
         driver.findElement(sendPresentationBtn).click();
 
-        wait(driver, presentTextHW);
-
+        Thread.sleep(2000);
         driver.findElement(threePointsOptionsBtn).click();
+
+        Thread.sleep(2000);
         driver.findElement(deletePostLink).click();
 
-        wait(driver, deleteBtn);
-
+        Thread.sleep(2000);
         driver.findElement(deleteBtn).click();
 
         Thread.sleep(5000);
